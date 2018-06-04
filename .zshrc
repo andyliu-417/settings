@@ -15,8 +15,9 @@ alias admin='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-a
 
 alias task='git pull&&gcheckout $1'
 function gcheckout() {
-	str="feature/CARE-"$1
-	git checkout -b $str;
+	bName="feature/CARE-"$1
+	git checkout -b $bName;
+	git push origin $bName
 }
 
 
