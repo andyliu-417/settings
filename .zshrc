@@ -7,11 +7,13 @@
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 alias repo='cd ~;cd repos/repo'
-alias cares='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-user-dashboard;npm start;'
-alias admins='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard;npm start;'
 
 alias care='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
 alias admin='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
+alias hitshare='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-shared'
+
+alias cares='care&&npm start;'
+alias admins='admin&&npm start;'
 
 alias task='care&&git pull&&gCheckout $1'
 function gCheckout() {
@@ -19,13 +21,13 @@ function gCheckout() {
 	git checkout -b $bName;
 	git push origin $bName
 }
-
 alias gb='care&&git pull&&gBranch $1'
 function gBranch() {
 	bName="feature/CARE-"$1
 	git checkout $bName;
 }
 
+alias su='hitshare&&npm install;'
 
 
 
