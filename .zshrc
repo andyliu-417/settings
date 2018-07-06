@@ -94,20 +94,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-alias repo='cd ~;cd repos/repo'
+alias repo='cd ~;cd repos'
 
-alias hitplay='cd ~;cd repos/repoh/hitplay-care-monitoring&&git pull origin master&&lerna bootstrap'
-alias care='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
-alias admin='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
-alias careb='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/backend-user-dashboard-api'
-alias adminb='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/backend-admin-dashboard-api'
-alias hitshare='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-shared'
+alias hp='cd ~;cd repos/hitplay-care-monitoring'
+alias hppull='hp&&git pull origin master'
+alias care='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
+alias admin='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
+alias careb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-user-dashboard-api'
+alias adminb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-admin-dashboard-api'
+alias share='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-shared'
 
 alias cares='care&&npm start;'
 alias admins='admin&&npm start;'
 alias carebd='careb&&sls deploy;'
 alias adminbd='adminb&&sls deploy;'
-alias share='hitshare&&npm install;'
 
 alias master='care&&git checkout master'
 
@@ -130,17 +130,15 @@ function gBranch() {
 	git checkout $bName;
 }
 
-alias wnhitplay='cd ~;cd repos/repo/worknode&&git pull origin master&&lerna bootstrap'
-alias wncare='cd ~;cd repos/repo/worknode/packages/hitplay-care-user-dashboard'
-alias wnadmin='cd ~;cd repos/repo/worknode/packages/hitplay-care-admin-dashboard'
-alias wncareb='cd ~;cd repos/repo/worknode/packages/backend-user-dashboard-api'
-alias wnadminb='cd ~;cd repos/repo/worknode/packages/backend-admin-dashboard-api'
-alias wnhitshare='cd ~;cd repos/repo/worknode/packages/hitplay-care-shared'
+alias lernadp='hp&&echo "\n y"|lerna clean&&shareClean&&careClean&&sleep 10&&hp&&lerna bootstrap'
+function shareClean() {
+	share
+	npm cache clean --force
+}
+function careClean() {
+	care
+	npm cache clean --force
+}
 
-alias wncares='wncare&&npm start;'
-alias wnadmins='wnadmin&&npm start;'
-alias wncarebd='wncareb&&sls deploy;'
-alias wnadminbd='wnadminb&&sls deploy;'
-alias wnshare='wnhitshare&&npm install;'
-
+alias hpandy='hp&&git checkout andy'
 
