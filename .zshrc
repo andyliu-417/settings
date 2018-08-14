@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/andy/.oh-my-zsh
+export ZSH=/Users/andyjunxi/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -94,14 +94,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-alias repo='cd ~;cd repos/repo'
+alias repo='cd ~;cd repos'
 
-alias hitplay='cd ~;cd repos/repoh/hitplay-care-monitoring&&git pull origin master&&lerna bootstrap'
-alias care='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
-alias admin='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
-alias careb='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/backend-user-dashboard-api'
-alias adminb='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/backend-admin-dashboard-api'
-alias hitshare='cd ~;cd repos/repoh/hitplay-care-monitoring/packages/hitplay-care-shared'
+alias hitplay='cd ~;cd repos/hitplay-care-monitoring&&git pull origin master&&lerna bootstrap'
+alias care='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
+alias admin='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
+alias careb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-user-dashboard-api'
+alias adminb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-admin-dashboard-api'
+alias hitshare='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-shared'
 
 alias cares='care&&npm start;'
 alias admins='admin&&npm start;'
@@ -130,17 +130,38 @@ function gBranch() {
 	git checkout $bName;
 }
 
-alias wnhitplay='cd ~;cd repos/repo/worknode&&git pull origin master&&lerna bootstrap'
-alias wncare='cd ~;cd repos/repo/worknode/packages/hitplay-care-user-dashboard'
-alias wnadmin='cd ~;cd repos/repo/worknode/packages/hitplay-care-admin-dashboard'
-alias wncareb='cd ~;cd repos/repo/worknode/packages/backend-user-dashboard-api'
-alias wnadminb='cd ~;cd repos/repo/worknode/packages/backend-admin-dashboard-api'
-alias wnhitshare='cd ~;cd repos/repo/worknode/packages/hitplay-care-shared'
+alias pg='playGround $1 $2'
+function playGround() {
+	str="$2"
+	first=${str:0:1}
+	rest=${str:1}
+	upperFirst=`echo "$first" | tr a-z A-Z`
+	name="$upperFirst$rest"
 
-alias wncares='wncare&&npm start;'
-alias wnadmins='wnadmin&&npm start;'
-alias wncarebd='wncareb&&sls deploy;'
-alias wnadminbd='wnadminb&&sls deploy;'
-alias wnshare='wnhitshare&&npm install;'
+	mkdir $name
+	cd $name
+
+	if [ "$1" = "g" ]; then
+cat > index.js << END_TEXT
+import React, { Component } from "react";
+
+class $name extends Component {
+  render() {
+    return <div> hello world </div>;
+  }
+}
+
+export default $name;
+
+END_TEXT
+
+cat > style.js << END_TEXT
+import styled from "styled-components";
+
+END_TEXT
+	fi
+
+	cd ..
+}
 
 
