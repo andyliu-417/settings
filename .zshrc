@@ -97,17 +97,19 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias repo='cd ~;cd repos'
 
 alias hitplay='cd ~;cd repos/hitplay-care-monitoring&&git pull origin master&&lerna bootstrap'
+alias hp='cd ~;cd repos/hitplay-care-monitoring'
+alias hppull='hp&&git pull origin master'
 alias care='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-user-dashboard'
 alias admin='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-admin-dashboard'
 alias careb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-user-dashboard-api'
 alias adminb='cd ~;cd repos/hitplay-care-monitoring/packages/backend-admin-dashboard-api'
 alias hitshare='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-shared'
+alias share='cd ~;cd repos/hitplay-care-monitoring/packages/hitplay-care-shared'
 
 alias cares='care&&npm start;'
 alias admins='admin&&npm start;'
 alias carebd='careb&&sls deploy;'
 alias adminbd='adminb&&sls deploy;'
-alias share='hitshare&&npm install;'
 
 alias master='care&&git checkout master'
 
@@ -162,6 +164,15 @@ END_TEXT
 	fi
 
 	cd ..
+alias lernadp='hp&&echo "\n y"|lerna clean&&shareClean&&careClean&&sleep 10&&hp&&lerna bootstrap'
+function shareClean() {
+	share
+	npm cache clean --force
+}
+function careClean() {
+	care
+	npm cache clean --force
 }
 
+alias hpandy='hp&&git checkout andy'
 
